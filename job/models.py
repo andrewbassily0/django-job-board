@@ -1,4 +1,5 @@
 from random import choices
+from tkinter import CASCADE, ON
 from turtle import title
 from unittest.util import _MAX_LENGTH
 from django.db import models
@@ -17,9 +18,11 @@ class Job(models.Model):
     vacancy=models.IntegerField(default=1)
     salary=models.IntegerField(default=0)
     experiance=models.IntegerField(default=1)
+    
 
     def __str__(self):
         return self.title
+
 
 class blog(models.Model):
     title= models.CharField(max_length=100,)

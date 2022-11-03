@@ -7,4 +7,3 @@ from .models import blog
 
 admin.site.register(Job)
 admin.site.register(blog)
-
