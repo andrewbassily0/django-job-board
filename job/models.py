@@ -10,6 +10,8 @@ JOB_TYBE= (
     ("part time","part time"),
 )
 
+
+
 class Job(models.Model):
     title= models.CharField(max_length=100)
     Job_type =models.CharField(max_length=15 ,choices=JOB_TYBE)
@@ -18,13 +20,19 @@ class Job(models.Model):
     vacancy=models.IntegerField(default=1)
     salary=models.IntegerField(default=0)
     experiance=models.IntegerField(default=1)
-    
+    category = models.ForeignKey('Category', related_name='+',  on_delete=models.CASCADE )
+    image = models.ImageField( upload_to='jobs/')
 
     def __str__(self):
-        return self.title
+      return self.title
 
 
-class blog(models.Model):
-    title= models.CharField(max_length=100,)
+class Category(models.Model):
+    name = models.CharField(max_length=25)
+
+    def __str__(self):
+        return self.name
+
+   
 
 
