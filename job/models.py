@@ -3,6 +3,7 @@ from tkinter import CASCADE, ON
 from turtle import title
 from unittest.util import _MAX_LENGTH
 from django.db import models
+from django.utils.text import slugify
 
 # Create your models here.
 JOB_TYBE= (
@@ -23,9 +24,14 @@ class Job(models.Model):
     category = models.ForeignKey('Category', related_name='+',  on_delete=models.CASCADE )
     image = models.ImageField( upload_to='jobs/')
 
+    slug=models.SlugField(blank=True , null=True )
+
+    def save(self, *args , **kwargs):
+        self.slug=slugify(self.title)
+        super(Job,self).save(*args,**kwargs)
+
     def __str__(self):
       return self.title
-
 
 class Category(models.Model):
     name = models.CharField(max_length=25)
@@ -33,6 +39,6 @@ class Category(models.Model):
     def __str__(self):
         return self.name
 
-   
+
 
 
