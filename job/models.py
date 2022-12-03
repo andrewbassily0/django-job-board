@@ -3,8 +3,8 @@ from tkinter import CASCADE, ON
 from turtle import title
 from unittest.util import _MAX_LENGTH
 from django.db import models
-from django.forms import SlugField
-
+from django.utils.text import slugify
+from django.contrib.auth.models import User
 # Create your models here.
 JOB_TYBE= (
     ("full time","full time"),
@@ -14,6 +14,7 @@ JOB_TYBE= (
 
 
 class Job(models.Model):
+    job_owner = models.ForeignKey(User , related_name='job_owner', on_delete=models.CASCADE)
     title= models.CharField(max_length=100)
     Job_type =models.CharField(max_length=15 ,choices=JOB_TYBE)
     descriptions=models.TextField(max_length=1000)
@@ -27,7 +28,7 @@ class Job(models.Model):
     slug=models.SlugField(blank=True , null=True )
 
     def save(self, *args , **kwargs):
-        self.slug= SlugField(self.title)
+        self.slug= slugify (self.title)
         super(Job,self).save(*args,**kwargs)
 
     def __str__(self):
