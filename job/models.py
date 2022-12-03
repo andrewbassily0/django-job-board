@@ -48,7 +48,7 @@ class Apply(models.Model):
     portfoilo=models.URLField()
     cv = models.FileField(upload_to='apply/')
     cover_letter=models.TextField(max_length=200)
-    apply_at=models.DateTimeField(auto_now=1)
+    apply_at=models.DateTimeField(auto_now=True)
 
     def __str__(self):
         return self.name

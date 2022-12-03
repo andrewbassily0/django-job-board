@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     #Apps
     'job',
     'blog',
+    "bootstrap4",
 ]
 
 MIDDLEWARE = [
